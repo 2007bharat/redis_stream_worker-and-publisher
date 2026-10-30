@@ -70,7 +70,21 @@ export async function processEventFunction(event: {
     console.log("Processed fail to consumer the event", err);
   }
 }
-export async function fetching_Request(url: string, id: string) {
+export async function fetching_Request(
+  url: string,
+  id: string,
+): Promise<
+  | {
+      status: "UP";
+      response_time: number;
+      id: string;
+    }
+  | {
+      status: "DOWN";
+      response_time: number;
+      id: string;
+    }
+> {
   const currentTime = Date.now();
 
   return axios
